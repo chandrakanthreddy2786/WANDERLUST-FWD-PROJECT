@@ -6,123 +6,193 @@
 <style>
 
 body{
-font-family: Arial;
+font-family: 'Segoe UI', sans-serif;
 margin:0;
-background:#f4f4f4;
+background:#f5ebe0;
+transition:0.5s;
 }
 
+/* HEADER */
+
 header{
-background:#0b3d91;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#1f2933;
 color:white;
-text-align:center;
-padding:20px;
+padding:15px 40px;
+}
+
+header h1{
+color:#d4a373;
 }
 
 nav a{
-margin:15px;
 color:white;
+margin:15px;
 text-decoration:none;
-font-weight:bold;
+font-weight:500;
 }
 
-section{
-padding:40px;
+nav a:hover{
+color:#d4a373;
+}
+
+/* HERO */
+
+.hero{
+height:85vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+background-size:cover;
+color:white;
 text-align:center;
 }
 
-.hero{
-background:url("https://source.unsplash.com/1600x600/?travel");
-background-size:cover;
-color:white;
-padding:120px;
+.hero h2{
+font-size:55px;
+letter-spacing:2px;
+animation:fade 2s;
 }
 
-button{
-padding:10px 20px;
-background:#ff6600;
-border:none;
-color:white;
-cursor:pointer;
-border-radius:5px;
+.hero p{
+font-size:20px;
 }
+
+.btn{
+background:#d4a373;
+padding:12px 25px;
+color:white;
+border-radius:30px;
+text-decoration:none;
+margin-top:20px;
+font-weight:bold;
+}
+
+/* DESTINATIONS */
 
 .features{
 display:flex;
-justify-content:center;
-gap:20px;
 flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+padding:60px;
 }
 
 .card{
 background:white;
-padding:20px;
-width:200px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
+padding:25px;
+border-radius:12px;
+width:260px;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+transition:0.4s;
+text-align:center;
 }
 
-.places{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
+.card:hover{
+transform:translateY(-10px);
 }
 
-.place{
-background:white;
-padding:10px;
-width:250px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
+/* FORM */
 
-.place img{
-width:100%;
-border-radius:10px;
-}
-
-form{
-display:flex;
-flex-direction:column;
-gap:10px;
-width:300px;
+.form-box{
+width:320px;
 margin:auto;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+text-align:center;
 }
 
-input,select{
+input{
+width:90%;
 padding:10px;
+margin:10px;
+border-radius:6px;
+border:1px solid #ccc;
 }
+
+button{
+padding:10px 20px;
+background:#1f2933;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#d4a373;
+}
+
+/* DARK MODE */
+
+.dark{
+background:#111827;
+color:white;
+}
+
+.dark .card{
+background:#1f2933;
+color:white;
+}
+
+/* FOOTER */
 
 footer{
-background:#0b3d91;
-color:white;
 text-align:center;
-padding:10px;
+padding:25px;
+background:#1f2933;
+color:#d4a373;
 margin-top:40px;
+}
+
+/* ANIMATION */
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 </style>
 
+
 <script>
 
-function login(){
+function toggleMode(){
+document.body.classList.toggle("dark");
+}
 
-var user=document.getElementById("username").value
-var pass=document.getElementById("password").value
+function suggest(){
 
-if(user=="admin" && pass=="1234")
-alert("Login Successful")
+let budget=document.getElementById("budget").value;
+
+if(budget < 5000)
+alert("Suggested Destination: Goa 🏖");
+
+else if(budget < 15000)
+alert("Suggested Destination: Bali 🌴");
+
 else
-alert("Invalid Login")
+alert("Suggested Destination: Switzerland 🏔");
 
 }
 
-function bookTrip(){
+function login(){
 
-var name=document.getElementById("name").value
-var place=document.getElementById("destination").value
+let user=document.getElementById("user").value;
+let pass=document.getElementById("pass").value;
 
-alert("Booking Confirmed for "+name+" to "+place)
+if(user=="admin" && pass=="1234")
+alert("Login Successful!");
+
+else
+alert("Invalid Login");
 
 }
 
@@ -134,121 +204,104 @@ alert("Booking Confirmed for "+name+" to "+place)
 
 <header>
 
-<h1>🌍 WANDERLUST</h1>
-<p>Explore the World with Smart Travel</p>
+<h1>Wanderlust</h1>
 
 <nav>
 <a href="#home">Home</a>
 <a href="#destinations">Destinations</a>
-<a href="#booking">Book Trip</a>
+<a href="#booking">Book</a>
 <a href="#login">Login</a>
+<a href="#" onclick="toggleMode()">Dark Mode</a>
 </nav>
 
 </header>
 
-<section id="home" class="hero">
 
-<h2>Discover Amazing Places</h2>
-<p>Find the best destinations, hotels and food.</p>
+<section class="hero" id="home">
 
-<button onclick="location.href='#destinations'">Explore Now</button>
+<h2>Explore The World With Wanderlust</h2>
+
+<p>Luxury Travel • Unique Experiences • Unforgettable Memories</p>
+
+<a href="#destinations" class="btn">Discover Destinations</a>
 
 </section>
 
-<section>
 
-<h2>Our Services</h2>
+<section id="destinations">
+
+<h2 style="text-align:center">Popular Destinations</h2>
 
 <div class="features">
 
 <div class="card">
-<h3>✈️ Flight Booking</h3>
-<p>Book flights easily.</p>
+<h3>🏖 Goa</h3>
+<p>India's most famous beach destination.</p>
 </div>
 
 <div class="card">
-<h3>🏨 Hotels</h3>
-<p>Find the best hotels.</p>
+<h3>🌴 Bali</h3>
+<p>Tropical paradise with stunning temples.</p>
 </div>
 
 <div class="card">
-<h3>🍜 Food</h3>
-<p>Discover famous foods.</p>
+<h3>🗼 Paris</h3>
+<p>The romantic capital of the world.</p>
+</div>
+
+<div class="card">
+<h3>🏔 Switzerland</h3>
+<p>Snowy mountains and luxury resorts.</p>
 </div>
 
 </div>
 
 </section>
 
-<section id="destinations">
-
-<h2>Top Tourist Destinations</h2>
-
-<div class="places">
-
-<div class="place">
-<img src="https://source.unsplash.com/400x250/?goa">
-<h3>Goa</h3>
-<p>Famous for beaches and nightlife.</p>
-</div>
-
-<div class="place">
-<img src="https://source.unsplash.com/400x250/?mountain">
-<h3>Manali</h3>
-<p>Beautiful mountains and adventure.</p>
-</div>
-
-<div class="place">
-<img src="https://source.unsplash.com/400x250/?paris">
-<h3>Paris</h3>
-<p>City of lights and romance.</p>
-</div>
-
-</div>
-
-</section>
 
 <section id="booking">
 
-<h2>Book Your Trip</h2>
+<h2 style="text-align:center">Book Your Trip</h2>
 
-<form onsubmit="bookTrip(); return false;">
+<div class="form-box">
 
-<input type="text" id="name" placeholder="Your Name" required>
+<input type="text" placeholder="Full Name">
 
-<select id="destination">
-<option>Goa</option>
-<option>Manali</option>
-<option>Paris</option>
-</select>
+<input type="text" placeholder="Destination">
 
-<input type="date">
+<input type="number" id="budget" placeholder="Travel Budget">
 
-<button type="submit">Book Trip</button>
+<button onclick="suggest()">Suggest Destination</button>
 
-</form>
+<br><br>
+
+<button>Book Now</button>
+
+</div>
 
 </section>
+
 
 <section id="login">
 
-<h2>User Login</h2>
+<h2 style="text-align:center">User Login</h2>
 
-<form onsubmit="login(); return false;">
+<div class="form-box">
 
-<input type="text" id="username" placeholder="Username">
+<input type="text" id="user" placeholder="Username">
 
-<input type="password" id="password" placeholder="Password">
+<input type="password" id="pass" placeholder="Password">
 
-<button type="submit">Login</button>
+<button onclick="login()">Login</button>
 
-</form>
+</div>
 
 </section>
 
+
 <footer>
 
-<p>© 2026 Wanderlust Tourism | Explore the World</p>
+<p>© 2026 Wanderlust Travel Company</p>
 
 </footer>
 
